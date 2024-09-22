@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         child: const Icon(Icons.add, color: ColorStyles.lightBrown),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: ColorStyles.geryBrown,
+        color: ColorStyles.brown,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,13 +38,13 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.list,
-                  color: ColorStyles.darkBrown,
+                  color: ColorStyles.lightBrown,
                 )),
             IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.person,
-                  color: ColorStyles.darkBrown,
+                  color: ColorStyles.lightBrown,
                 )),
           ],
         ),
