@@ -8,13 +8,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Column(
+      backgroundColor: ColorStyles.lightBrown,
+      body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
             child: Text(
               "Tasks",
-              style: TextStyles.blackBold,
+              style: TextStyles.boldStyle,
             ),
           ),
         ],
@@ -24,23 +25,26 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: () {},
-        backgroundColor: Colors.blueAccent,
-        child: const Icon(Icons.add, color: Colors.white),
+        backgroundColor: ColorStyles.darkBrown,
+        child: const Icon(Icons.add, color: ColorStyles.lightBrown),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
+        color: ColorStyles.geryBrown,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.list, color: Colors.white)),
+                icon: const Icon(
+                  Icons.list,
+                  color: ColorStyles.darkBrown,
+                )),
             IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.person,
-                  color: Colors.white,
+                  color: ColorStyles.darkBrown,
                 )),
           ],
         ),
