@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         shape: const CircleBorder(),
         onPressed: () {},
         backgroundColor: Colors.blueAccent,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
@@ -33,8 +33,15 @@ class HomeScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.abc)),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.list, color: Colors.white)),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.person,
+                  color: Colors.white,
+                )),
           ],
         ),
       ),
