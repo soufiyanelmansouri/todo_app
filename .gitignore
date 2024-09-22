@@ -1,0 +1,49 @@
+# Miscellaneous files
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ IDEA files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Visual Studio Code settings (uncomment if needed)
+#.vscode/
+
+# Flutter/Dart/Pub related files
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+
+# Symbolication files
+app.*.symbols
+
+# Obfuscation files
+app.*.map.json
+
+# Android Studio build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Additional Flutter/Dart files to ignore
+.dart_tool/
+.idea/
+.vscode/
+build/
+.packages
+pubspec.lock
