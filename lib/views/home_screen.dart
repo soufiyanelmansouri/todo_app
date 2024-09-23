@@ -8,16 +8,56 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorStyles.lightBrown,
+      backgroundColor: ColorStyles.cream,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
             child: Text(
               "Tasks",
-              style: TextStyles.boldStyle,
+              style: TextStyles.headerBold,
             ),
           ),
+          Expanded(
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    decoration: const BoxDecoration(
+                        color: ColorStyles.warmTerracotta,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                          child: Text(
+                            "Go To Gym",
+                            style: TextStyles.bodyMedium,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            "Plan and organize tasks, and manage deadlines efficiently with a simple to-do app.",
+                            style: TextStyles.bodyMedium,
+                            maxLines:
+                                1, // Adjust to the number of lines you want
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -25,11 +65,11 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: () {},
-        backgroundColor: ColorStyles.darkBrown,
-        child: const Icon(Icons.add, color: ColorStyles.lightBrown),
+        backgroundColor: ColorStyles.charcoalBrown,
+        child: const Icon(Icons.add, color: ColorStyles.softBeige),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: ColorStyles.brown,
+        color: ColorStyles.warmTerracotta,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,13 +78,13 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.list,
-                  color: ColorStyles.lightBrown,
+                  color: ColorStyles.softBeige,
                 )),
             IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.person,
-                  color: ColorStyles.lightBrown,
+                  color: ColorStyles.softBeige,
                 )),
           ],
         ),
