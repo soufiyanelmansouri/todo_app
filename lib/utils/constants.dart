@@ -17,14 +17,14 @@ class TextStyles {
 
   // Medium weight text for body
   static const TextStyle bodyMedium = TextStyle(
-    color: ColorStyles.cream,
+    color: ColorStyles.softBeige,
     fontWeight: FontWeight.w500, // Medium weight
     fontSize: 18,
   );
 
   // Regular text for body content
   static const TextStyle bodyRegular = TextStyle(
-    color: ColorStyles.softBeige,
+    color: ColorStyles.cream,
     fontWeight: FontWeight.w400, // Normal weight
     fontSize: 16,
   );
