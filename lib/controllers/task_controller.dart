@@ -13,4 +13,14 @@ class TaskController extends ChangeNotifier {
     _tasks = _taskService.fetchTasks();
     notifyListeners();
   }
+
+  void addTask(newTask) {
+    _tasks.add(newTask);
+    notifyListeners();
+  }
+
+  void toggelTask(Task currentTask) {
+    currentTask.isCompleted = !currentTask.isCompleted;
+    notifyListeners();
+  }
 }

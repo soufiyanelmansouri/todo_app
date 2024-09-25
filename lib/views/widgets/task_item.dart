@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/task_controller.dart';
 import 'package:todo_app/models/task.dart';
 
 import '../../utils/constants.dart';
@@ -21,7 +23,8 @@ class TeskItem extends StatelessWidget {
           leading: Checkbox(
             value: task.isCompleted,
             onChanged: (_) {
-              // TODO
+              Provider.of<TaskController>(context, listen: false)
+                  .toggelTask(task);
             },
           ),
           title: Text(

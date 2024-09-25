@@ -44,9 +44,7 @@ class HomeScreen extends StatelessWidget {
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       extendBody: true,
-      floatingActionButton: BuildFloatingActionButton(
-        onPressed: () {},
-      ),
+      floatingActionButton: const BuildFloatingActionButton(),
       bottomNavigationBar: const Buildbottomnavigationbar(),
     );
   }
