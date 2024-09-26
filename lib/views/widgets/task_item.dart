@@ -23,7 +23,6 @@ class TeskItem extends StatelessWidget {
           leading: Checkbox(
             value: task.isCompleted,
             onChanged: (_) {
-              //TOdo:
               Provider.of<TaskController>(context, listen: false)
                   .toggelTask(task);
             },
