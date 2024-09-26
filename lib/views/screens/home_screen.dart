@@ -34,6 +34,7 @@ class HomeScreen extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     child: TeskItem(
                       task: task,
+                      index: index,
                     ),
                   );
                 },

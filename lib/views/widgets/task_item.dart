@@ -7,8 +7,9 @@ import '../../utils/constants.dart';
 
 class TeskItem extends StatelessWidget {
   final Task task;
+  final int index;
 
-  const TeskItem({super.key, required this.task});
+  const TeskItem({super.key, required this.task, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,8 @@ class TeskItem extends StatelessWidget {
           trailing: IconButton(
             icon: const Icon(Icons.delete, color: ColorStyles.softBeige),
             onPressed: () {
-              // TODO
+              Provider.of<TaskController>(context, listen: false)
+                  .deleteTask(index);
             },
           ),
         ),
