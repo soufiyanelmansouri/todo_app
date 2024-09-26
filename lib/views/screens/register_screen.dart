@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../controllers/auth_controller.dart';
-import '../../utils/constants.dart';
-// Assuming you have TextStyles and ColorStyles in constants.dart
+import '../widgets/auth_form.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -25,7 +23,6 @@ class _SignUpScreenState extends State<RegisterScreen> {
 
   Future<void> _registerUser() async {
     final authController = Provider.of<AuthController>(context, listen: false);
-
     await authController.signUp(
         _emailController.text, _passwordController.text);
 
@@ -41,77 +38,11 @@ class _SignUpScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Center(
-              child: Text(
-                'Sign Up',
-                style: TextStyles.headerBold,
-              ),
-            ),
-            const SizedBox(height: 60),
-            const Center(
-              child: Text(
-                'Create an account',
-                style: TextStyles.subheaderSemiBold,
-              ),
-            ),
-            const SizedBox(height: 60),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: ColorStyles.softBeige,
-                labelText: 'Email',
-                labelStyle: TextStyles.bodyRegular,
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorStyles.charcoalBrown),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorStyles.warmTerracotta),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: ColorStyles.softBeige,
-                labelText: 'Password',
-                labelStyle: TextStyles.bodyRegular,
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorStyles.charcoalBrown),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorStyles.warmTerracotta),
-                ),
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 40),
-            Center(
-              child: ElevatedButton(
-                onPressed: _registerUser,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorStyles.warmTerracotta,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                child: const Text(
-                  'Register',
-                  style: TextStyles.buttonBold,
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: AuthForm(
+        emailController: _emailController,
+        passwordController: _passwordController,
+        buttonText: 'Register',
+        onPressed: _registerUser,
       ),
     );
   }
