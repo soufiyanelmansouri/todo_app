@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/views/screens/register_screen.dart';
 import '../../controllers/auth_controller.dart';
 import '../widgets/auth_form.dart';
-// Import your AuthForm widget
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -36,6 +36,16 @@ class _LoginScreenState extends State<LoginScreen> {
         passwordController: passwordController,
         buttonText: 'Sign In',
         onPressed: _loginUser,
+        navText: "Don't have an account? ",
+        navLinkText: "Sign Up",
+        onNavLinkTap: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RegisterScreen(),
+            ),
+          );
+        },
       ),
     );
   }

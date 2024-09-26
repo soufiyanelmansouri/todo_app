@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/views/screens/login_screen.dart';
 import '../../controllers/auth_controller.dart';
 import '../widgets/auth_form.dart';
 
@@ -43,6 +44,16 @@ class _SignUpScreenState extends State<RegisterScreen> {
         passwordController: _passwordController,
         buttonText: 'Register',
         onPressed: _registerUser,
+        navText: "Have an account? ",
+        navLinkText: "Login",
+        onNavLinkTap: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+          );
+        },
       ),
     );
   }

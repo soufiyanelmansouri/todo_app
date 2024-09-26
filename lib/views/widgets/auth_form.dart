@@ -6,12 +6,18 @@ class AuthForm extends StatelessWidget {
   final TextEditingController passwordController;
   final String buttonText;
   final VoidCallback onPressed;
+  final String navText;
+  final String navLinkText;
+  final VoidCallback? onNavLinkTap; // Optional callback for navigation
 
   const AuthForm({
     required this.emailController,
     required this.passwordController,
     required this.buttonText,
     required this.onPressed,
+    required this.navText,
+    required this.navLinkText,
+    this.onNavLinkTap,
     super.key,
   });
 
@@ -25,7 +31,7 @@ class AuthForm extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              buttonText, // Update this as needed
+              buttonText,
               style: TextStyles.headerBold,
             ),
           ),
@@ -78,6 +84,27 @@ class AuthForm extends StatelessWidget {
                 style: TextStyles.buttonBold,
               ),
             ),
+          ),
+          const SizedBox(height: 20),
+          // Navigation Prompt
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                navText,
+                style: TextStyles.bodyRegular,
+              ),
+              GestureDetector(
+                onTap: onNavLinkTap,
+                child: Text(
+                  navLinkText,
+                  style: const TextStyle(
+                    color: ColorStyles.warmTerracotta,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
