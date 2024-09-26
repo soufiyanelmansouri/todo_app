@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'controllers/task_controller.dart';
 import 'views/screens/home_screen.dart';
 

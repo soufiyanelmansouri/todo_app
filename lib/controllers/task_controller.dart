@@ -23,4 +23,9 @@ class TaskController extends ChangeNotifier {
     currentTask.isCompleted = !currentTask.isCompleted;
     notifyListeners();
   }
+
+  void deleteTask(int currentTaskIndex) {
+    _tasks.removeAt(currentTaskIndex);
+    notifyListeners();
+  }
 }
