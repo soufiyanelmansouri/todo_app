@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/task.dart';
-import '../services/service.dart';
+import '../services/task_service.dart';
 
 class TaskController extends ChangeNotifier {
   final TaskService _taskService = TaskService();

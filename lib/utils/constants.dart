@@ -24,7 +24,7 @@ class TextStyles {
 
   // Regular text for body content
   static const TextStyle bodyRegular = TextStyle(
-    color: ColorStyles.cream,
+    color: ColorStyles.charcoalBrown,
     fontWeight: FontWeight.w400, // Normal weight
     fontSize: 16,
   );
@@ -46,7 +46,7 @@ class TextStyles {
 
   // Bold uppercase text for buttons
   static const TextStyle buttonBold = TextStyle(
-    color: ColorStyles.charcoalBrown,
+    color: ColorStyles.softBeige,
     fontWeight: FontWeight.w700,
     fontSize: 16,
     letterSpacing: 1.5, // Slight letter spacing for buttons
