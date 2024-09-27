@@ -11,13 +11,10 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use Provider to access AuthController
     final authController = Provider.of<AuthController>(context);
 
-    // Get the current user from the AuthController
     final UserModel? user = authController.currentUser;
 
-    // If the user is logged in, navigate to HomeScreen; otherwise, navigate to LoginScreen
     if (user != null) {
       return const HomeScreen();
     } else {
