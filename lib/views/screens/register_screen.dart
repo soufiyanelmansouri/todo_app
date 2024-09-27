@@ -42,7 +42,7 @@ class _SignUpScreenState extends State<RegisterScreen> {
       body: AuthForm(
         emailController: _emailController,
         passwordController: _passwordController,
-        buttonText: 'Register',
+        buttonText: 'Sing Up',
         onPressed: _registerUser,
         navText: "Have an account? ",
         navLinkText: "Login",
