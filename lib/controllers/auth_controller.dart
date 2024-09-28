@@ -10,11 +10,8 @@ class AuthController with ChangeNotifier {
   AuthController() {
     _auth.authStateChanges().listen(_authStateChanged);
   }
-
-  // Getter for current user
   UserModel? get currentUser => _currentUser;
 
-  // Getter for auth error
   String? get authError => _authError;
 
   void _authStateChanged(User? firebaseUser) {
@@ -22,7 +19,6 @@ class AuthController with ChangeNotifier {
       _currentUser = UserModel(
         uid: firebaseUser.uid,
         email: firebaseUser.email!,
-        passwod: '',
       );
     } else {
       _currentUser = null;
