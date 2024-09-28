@@ -4,6 +4,7 @@ import '../models/user_model.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  FirebaseAuth? get firebaseAuth => _firebaseAuth;
 
   Future<UserModel?> signUpWithEmail(String email, String password) async {
     try {

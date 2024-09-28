@@ -1,40 +1,63 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/user_model.dart';
-import '../services/auth_service.dart';
+import '../../models/user_model.dart';
 
 class AuthController with ChangeNotifier {
-  final AuthService _authService = AuthService();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   UserModel? _currentUser;
   String? _authError;
 
+  AuthController() {
+    _auth.authStateChanges().listen(_authStateChanged);
+  }
+
+  // Getter for current user
   UserModel? get currentUser => _currentUser;
+
+  // Getter for auth error
   String? get authError => _authError;
 
-  Future<void> signUp(String email, String password) async {
-    try {
-      _currentUser = await _authService.signUpWithEmail(email, password);
-      _authError = null;
-      notifyListeners();
-    } catch (error) {
-      _authError = error.toString();
-      notifyListeners();
+  void _authStateChanged(User? firebaseUser) {
+    if (firebaseUser != null) {
+      _currentUser = UserModel(
+        uid: firebaseUser.uid,
+        email: firebaseUser.email!,
+        passwod: '',
+      );
+    } else {
+      _currentUser = null;
     }
+    _authError = null; // Reset error when state changes successfully
+    notifyListeners();
   }
 
+  // Sign in method
   Future<void> signIn(String email, String password) async {
     try {
-      _currentUser = await _authService.signInWithEmail(email, password);
-      _authError = null;
-      notifyListeners();
-    } catch (error) {
-      _authError = error.toString();
-      notifyListeners();
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      _authError = null; // Clear any previous errors on successful sign-in
+    } on FirebaseAuthException catch (e) {
+      _authError = e.message; // Capture error message
     }
+    notifyListeners();
   }
 
+  // Sign up method
+  Future<void> signUp(String email, String password) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      _authError = null; // Clear any previous errors on successful sign-up
+    } on FirebaseAuthException catch (e) {
+      _authError = e.message; // Capture error message
+    }
+    notifyListeners();
+  }
+
+  // Sign out method
   Future<void> signOut() async {
-    await _authService.signOut();
-    _currentUser = null;
+    await _auth.signOut();
+    _authError = null; // Reset the error message on sign-out
     notifyListeners();
   }
 }

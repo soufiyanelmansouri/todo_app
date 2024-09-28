@@ -65,9 +65,9 @@ class _BuildFloatingActionButtonState extends State<BuildFloatingActionButton> {
                   title: _titleController.text,
                   description: _descriptionController.text,
                   isCompleted: false,
-                )); // Add task to the controller
+                ));
 
-                Navigator.pop(context); // Close the bottom sheet
+                Navigator.pop(context);
               },
               child: const Text('Add Task'),
             ),

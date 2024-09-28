@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/views/screens/home_screen.dart';
 import 'package:todo_app/views/screens/register_screen.dart';
 import '../../controllers/auth_controller.dart';
 import '../widgets/auth_form.dart';
@@ -25,6 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(authController.authError!)),
       );
+    } else {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ));
     }
   }
 
