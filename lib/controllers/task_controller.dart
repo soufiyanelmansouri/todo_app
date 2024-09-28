@@ -11,7 +11,7 @@ class TaskController extends ChangeNotifier {
   Future<void> fetchTasks() async {
     try {
       _tasks = await _taskService.fetchTasks();
-      notifyListeners(); // Update UI
+      notifyListeners();
     } catch (e) {
       throw e.toString();
     }
@@ -27,8 +27,15 @@ class TaskController extends ChangeNotifier {
     });
   }
 
-  void toggelTask(Task currentTask) {
+  void toggleTask(Task currentTask) async {
     currentTask.isCompleted = !currentTask.isCompleted;
+    try {
+      await _taskService.toggleTask(currentTask);
+      //TODO: i still have an error on this function i chech tomorow
+    } catch (e) {
+      currentTask.isCompleted = !currentTask.isCompleted;
+      //TODO: Show Snack Bar
+    }
     notifyListeners();
   }
 

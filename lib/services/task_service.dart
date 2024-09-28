@@ -33,9 +33,23 @@ class TaskService {
 
   void deleteTask(int currentTaskIndex, String taskId) async {
     try {
-      await _firestore.collection('tasks').doc(taskId).delete();
+      await _firestore.collection(tasksCollection).doc(taskId).delete();
     } catch (e) {
-      print('Failed to delete task: $e');
+      //TODO: Show Snack Bar
+    }
+  }
+
+  Future<void> toggleTask(Task currentTask) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(tasksCollection)
+          .doc(currentTask.id)
+          .update({
+        'isCompleted': currentTask.isCompleted,
+      });
+    } catch (e) {
+      //TODO: Show Snack Bar
+      rethrow; // Rethrow to handle in the calling function
     }
   }
 }

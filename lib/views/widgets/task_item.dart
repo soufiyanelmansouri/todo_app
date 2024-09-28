@@ -25,7 +25,7 @@ class TeskItem extends StatelessWidget {
             value: task.isCompleted,
             onChanged: (_) {
               Provider.of<TaskController>(context, listen: false)
-                  .toggelTask(task);
+                  .toggleTask(task);
             },
           ),
           title: Text(
