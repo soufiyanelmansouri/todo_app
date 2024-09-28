@@ -12,22 +12,25 @@ class TaskService {
     try {
       QuerySnapshot querySnapshot =
           await _firestore.collection(tasksCollection).get();
+
       List<Task> tasks = querySnapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        return Task.fromJson(data);
+        return Task.fromFirestore(doc);
       }).toList();
+
       return tasks;
     } catch (e) {
-      throw Exception("Error fetching tasks: $e");
+      rethrow;
     }
   }
 
   // Add Task to Firestore
   Future<void> addTask(Task task) async {
     try {
-      await _firestore.collection(tasksCollection).add(task.toJson());
+      DocumentReference docRef =
+          await _firestore.collection(tasksCollection).add(task.toJson());
+      task.id = docRef.id;
     } catch (e) {
-      throw Exception("Error adding task: $e");
+      rethrow;
     }
   }
 
@@ -35,7 +38,7 @@ class TaskService {
     try {
       await _firestore.collection(tasksCollection).doc(taskId).delete();
     } catch (e) {
-      //TODO: Show Snack Bar
+      rethrow;
     }
   }
 
@@ -48,8 +51,7 @@ class TaskService {
         'isCompleted': currentTask.isCompleted,
       });
     } catch (e) {
-      //TODO: Show Snack Bar
-      rethrow; // Rethrow to handle in the calling function
+      rethrow;
     }
   }
 }

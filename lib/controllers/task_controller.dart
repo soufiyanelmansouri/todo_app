@@ -31,7 +31,7 @@ class TaskController extends ChangeNotifier {
     currentTask.isCompleted = !currentTask.isCompleted;
     try {
       await _taskService.toggleTask(currentTask);
-      //TODO: i still have an error on this function i chech tomorow
+      //TODO: i still have an error on this function i check tomorow
     } catch (e) {
       currentTask.isCompleted = !currentTask.isCompleted;
       //TODO: Show Snack Bar
@@ -40,7 +40,7 @@ class TaskController extends ChangeNotifier {
   }
 
   void deleteTask(int currentTaskIndex) {
-    _taskService.deleteTask(currentTaskIndex, _tasks[currentTaskIndex].id);
+    _taskService.deleteTask(currentTaskIndex, _tasks[currentTaskIndex].id!);
     _tasks.removeAt(
       currentTaskIndex,
     );
