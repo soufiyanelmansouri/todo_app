@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/state__controller.dart';
 import 'package:todo_app/controllers/task_controller.dart';
 import 'package:todo_app/models/task.dart';
 
@@ -21,11 +22,19 @@ class TeskItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ListTile(
-          leading: Checkbox(
-            value: task.isCompleted,
-            onChanged: (_) {
-              Provider.of<TaskController>(context, listen: false)
-                  .toggleTask(task);
+          leading: Consumer<TaskController>(
+            builder: (context, taskController, child) {
+              return taskController.state == EnState.busy
+                  ? const CircularProgressIndicator(
+                      color: ColorStyles.cream,
+                    )
+                  : Checkbox(
+                      value: task.isCompleted,
+                      onChanged: (value) {
+                        // Call toggleTask which should update the loading state
+                        taskController.toggleTask(task);
+                      },
+                    );
             },
           ),
           title: Text(

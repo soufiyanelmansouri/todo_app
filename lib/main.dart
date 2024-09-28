@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'controllers/auth_controller.dart';
+import 'controllers/state__controller.dart';
 import 'controllers/task_controller.dart';
 import 'views/screens/auth_wrapper.dart';
 
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<TaskController>(
             create: (_) =>
                 TaskController()..fetchTasks() // Initialize AuthController
+            ),
+        ChangeNotifierProvider<StateController>(
+            create: (_) => StateController() // Initialize AuthController
             ),
       ],
       child: const MaterialApp(

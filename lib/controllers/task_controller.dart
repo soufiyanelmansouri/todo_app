@@ -1,49 +1,50 @@
-import 'package:flutter/material.dart';
-
 import '../models/task.dart';
 import '../services/task_service.dart';
+import 'package:todo_app/controllers/state__controller.dart';
 
-class TaskController extends ChangeNotifier {
+class TaskController extends StateController {
   final TaskService _taskService = TaskService();
   List<Task> _tasks = [];
   List<Task> get tasks => _tasks;
 
   Future<void> fetchTasks() async {
     try {
+      setState(EnState.busy);
       _tasks = await _taskService.fetchTasks();
-      notifyListeners();
+      setState(EnState.idel);
     } catch (e) {
       throw e.toString();
     }
   }
 
   void addTask(Task task) {
+    setState(EnState.busy);
     _tasks.add(task);
-    notifyListeners();
     _taskService.addTask(task).catchError((e) {
       _tasks.remove(task);
-      notifyListeners();
       throw e.toString();
     });
+    setState(EnState.idel);
   }
 
   void toggleTask(Task currentTask) async {
     currentTask.isCompleted = !currentTask.isCompleted;
     try {
+      setState(EnState.busy);
       await _taskService.toggleTask(currentTask);
-      //TODO: i still have an error on this function i check tomorow
     } catch (e) {
       currentTask.isCompleted = !currentTask.isCompleted;
       //TODO: Show Snack Bar
     }
-    notifyListeners();
+    setState(EnState.idel);
   }
 
   void deleteTask(int currentTaskIndex) {
+    setState(EnState.busy);
     _taskService.deleteTask(currentTaskIndex, _tasks[currentTaskIndex].id!);
     _tasks.removeAt(
       currentTaskIndex,
     );
-    notifyListeners();
+    setState(EnState.idel);
   }
 }
