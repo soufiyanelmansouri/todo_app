@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/state__controller.dart';
 import 'package:todo_app/views/widgets/buildBottomNavigationBar.dart';
 import 'package:todo_app/views/widgets/floatingActionButton.dart';
 import '../../controllers/task_controller.dart';
@@ -25,20 +26,22 @@ class HomeScreen extends StatelessWidget {
           child: Consumer<TaskController>(
             builder: (context, taskController, child) {
               final tasks = taskController.tasks;
-              return ListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: (context, index) {
-                  final task = tasks[index];
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-                    child: TeskItem(
-                      task: task,
-                      index: index,
-                    ),
-                  );
-                },
-              );
+              return taskController.state == EnState.busy
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      itemCount: tasks.length,
+                      itemBuilder: (context, index) {
+                        final task = tasks[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 6),
+                          child: TeskItem(
+                            task: task,
+                            index: index,
+                          ),
+                        );
+                      },
+                    );
             },
           ),
         ),

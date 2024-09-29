@@ -45,7 +45,7 @@ class TeskItem extends StatelessWidget {
             task.description.isEmpty
                 ? 'No description provided'
                 : task.description,
-            style: TextStyles.bodyRegular,
+            style: TextStyles.bodyMedium,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

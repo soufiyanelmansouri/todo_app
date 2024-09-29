@@ -24,7 +24,7 @@ class TextStyles {
 
   // Regular text for body content
   static const TextStyle bodyRegular = TextStyle(
-    color: ColorStyles.cream,
+    color: ColorStyles.charcoalBrown,
     fontWeight: FontWeight.w400, // Normal weight
     fontSize: 16,
   );

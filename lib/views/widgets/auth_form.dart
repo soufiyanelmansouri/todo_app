@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/auth_controller.dart';
+import 'package:todo_app/controllers/state__controller.dart';
 import '../../utils/constants.dart';
 
 class AuthForm extends StatelessWidget {
@@ -71,20 +74,24 @@ class AuthForm extends StatelessWidget {
             obscureText: true,
           ),
           const SizedBox(height: 40),
-          Center(
-            child: ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorStyles.warmTerracotta,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              ),
-              child: Text(
-                buttonText,
-                style: TextStyles.buttonBold,
-              ),
-            ),
-          ),
+          Consumer<AuthController>(builder: (context, atuhController, child) {
+            return Center(
+              child: atuhController.state == EnState.busy
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: onPressed,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorStyles.warmTerracotta,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 15),
+                      ),
+                      child: Text(
+                        buttonText,
+                        style: TextStyles.buttonBold,
+                      ),
+                    ),
+            );
+          }),
           const SizedBox(height: 20),
           // Navigation Prompt
           Row(

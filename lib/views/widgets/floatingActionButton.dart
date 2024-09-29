@@ -39,41 +39,49 @@ class _BuildFloatingActionButtonState extends State<BuildFloatingActionButton> {
   void _showAddTaskBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
+      isScrollControlled:
+          true, // Allows the bottom sheet to be resized for keyboard
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (_) => Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              decoration: const InputDecoration(labelText: 'Task Title'),
-              controller: _titleController,
-            ),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Task Description'),
-              controller: _descriptionController,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<TaskController>(context, listen: false)
-                    .addTask(Task(
-                  id: DateTime.now().toString(),
-                  title: _titleController.text,
-                  description: _descriptionController.text,
-                  isCompleted: false,
-                ));
-
-                Navigator.pop(context);
-              },
-              child: const Text('Add Task'),
-            ),
-          ],
-        ),
-      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            bottom: MediaQuery.of(context).viewInsets.bottom +
+                20, // Ensures the bottom sheet resizes to fit keyboard
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                decoration: const InputDecoration(labelText: 'Task Title'),
+                controller: _titleController,
+              ),
+              TextField(
+                decoration:
+                    const InputDecoration(labelText: 'Task Description'),
+                controller: _descriptionController,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Provider.of<TaskController>(context, listen: false)
+                      .addTask(Task(
+                    id: DateTime.now().toString(),
+                    title: _titleController.text,
+                    description: _descriptionController.text,
+                    isCompleted: false,
+                  ));
+                  Navigator.pop(context);
+                },
+                child: const Text('Add Task'),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
